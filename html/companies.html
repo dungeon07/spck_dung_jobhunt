@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danh Sách Công Ty - JobHunt</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../style/style.css">
+</head>
+<body class="bg-light">
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold text-primary" href="index.html"><i class="fas fa-briefcase"></i> JobHunt</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Trang chủ</a></li>
+                    <li class="nav-item"><a class="nav-link" href="jobs.html">Việc làm</a></li>
+                    <!-- Đánh dấu trang hiện tại là active -->
+                    <li class="nav-item"><a class="nav-link active fw-bold text-primary" href="companies.html">Công ty</a></li>
+                    <li class="nav-item"><a class="btn btn-outline-primary ms-2" href="login.html">Đăng nhập</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header tìm kiếm công ty -->
+    <div class="bg-white py-5 mt-5 shadow-sm">
+        <div class="container">
+            <h2 class="fw-bold text-center mb-4">Khám Phá 100+ Công Ty Hàng Đầu</h2>
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <form class="d-flex">
+                        <input class="form-control me-2" type="search" placeholder="Nhập tên công ty...">
+                        <button class="btn btn-primary" type="submit">Tìm kiếm</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Danh sách công ty -->
+    <div class="container py-5">
+        <div class="row g-4">
+            
+            <!-- Company 1 -->
+            <div class="col-md-4 col-sm-6">
+                <div class="company-item rounded overflow-hidden h-100">
+                    <!-- Ảnh bìa công ty -->
+                    <div class="company-banner" style="background-image: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=600&q=80');">
+                        <!-- Logo nhỏ -->
+                        <div class="company-logo-thumb shadow-sm">
+                            <img src="https://th.bing.com/th/id/OIP.K00dXLIpAnRv7ENDay8d6wHaFj?w=225&h=180&c=7&r=0&o=7&cb=ucfimg2&dpr=1.3&pid=1.7&rm=3&ucfimg=1" alt="Logo">
+                        </div>
+                    </div>
+                    <div class="p-4 company-info">
+                        <h5 class="fw-bold mb-1">FPT Software</h5>
+                        <p class="text-muted small mb-2"><i class="fas fa-folder"></i> Công nghệ thông tin</p>
+                        <p class="small text-secondary line-clamp-2">
+                            Môi trường làm việc chuyên nghiệp, cơ hội onsite nước ngoài, đãi ngộ hấp dẫn.
+                        </p>
+                        <a href="#" class="btn btn-light w-100 text-primary fw-bold mt-2">Đang tuyển 15 vị trí</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Company 2 -->
+            <div class="col-md-4 col-sm-6">
+                <div class="company-item rounded overflow-hidden h-100">
+                    <div class="company-banner" style="background-image: url('https://images.unsplash.com/photo-1554200876-56c2f25224fa?auto=format&fit=crop&w=600&q=80');">
+                        <div class="company-logo-thumb shadow-sm">
+                            <img src="https://toppng.com/uploads/preview/viettel-vector-logo-download-free-115740601049odb446cbc.png" alt="Logo">
+                        </div>
+                    </div>
+                    <div class="p-4 company-info">
+                        <h5 class="fw-bold mb-1">Tập đoàn Viettel</h5>
+                        <p class="text-muted small mb-2"><i class="fas fa-folder"></i> Viễn thông / CNTT</p>
+                        <p class="small text-secondary">
+                            Tập đoàn công nghệ viễn thông quân đội hàng đầu Việt Nam.
+                        </p>
+                        <a href="#" class="btn btn-light w-100 text-primary fw-bold mt-2">Đang tuyển 8 vị trí</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Company 3 -->
+            <div class="col-md-4 col-sm-6">
+                <div class="company-item rounded overflow-hidden h-100">
+                    <div class="company-banner" style="background-image: url('https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=600&q=80');">
+                        <div class="company-logo-thumb shadow-sm">
+                            <img src="https://th.bing.com/th/id/OIP.YoclUhSAXQS5J-4MU8iPZAHaHa?w=169&h=180&c=7&r=0&o=7&cb=ucfimg2&dpr=1.3&pid=1.7&rm=3&ucfimg=1" alt="Logo">
+                        </div>
+                    </div>
+                    <div class="p-4 company-info">
+                        <h5 class="fw-bold mb-1">Shopee Việt Nam</h5>
+                        <p class="text-muted small mb-2"><i class="fas fa-folder"></i> Thương mại điện tử</p>
+                        <p class="small text-secondary">
+                            Nền tảng thương mại điện tử hàng đầu Đông Nam Á và Đài Loan.
+                        </p>
+                        <a href="#" class="btn btn-light w-100 text-primary fw-bold mt-2">Đang tuyển 20 vị trí</a>
+                    </div>
+                </div>
+            </div>
+
+             <!-- Company 4 -->
+             <div class="col-md-4 col-sm-6">
+                <div class="company-item rounded overflow-hidden h-100">
+                    <div class="company-banner" style="background-image: url('https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=600&q=80');">
+                        <div class="company-logo-thumb shadow-sm">
+                            <img src="https://th.bing.com/th/id/OIP.r8LYj7EID5rcC2m42w2zMwHaHa?w=138&h=150&c=6&o=7&cb=ucfimg2&dpr=1.3&pid=1.7&rm=3&ucfimg=1" alt="Logo">
+                        </div>
+                    </div>
+                    <div class="p-4 company-info">
+                        <h5 class="fw-bold mb-1">Vingroup</h5>
+                        <p class="text-muted small mb-2"><i class="fas fa-folder"></i> Đa ngành</p>
+                        <p class="small text-secondary">
+                            Tập đoàn tư nhân lớn nhất Việt Nam với hệ sinh thái đa dạng.
+                        </p>
+                        <a href="#" class="btn btn-light w-100 text-primary fw-bold mt-2">Đang tuyển 12 vị trí</a>
+                    </div>
+                </div>
+            </div>
+
+             <!-- Company 5 -->
+             <div class="col-md-4 col-sm-6">
+                <div class="company-item rounded overflow-hidden h-100">
+                    <div class="company-banner" style="background-image: url('https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=600&q=80');">
+                        <div class="company-logo-thumb shadow-sm">
+                            <img src="https://th.bing.com/th/id/OIP.HN_ljUb-T1NY3bAu9JfLPwHaHa?w=158&h=180&c=7&r=0&o=7&cb=ucfimg2&dpr=1.3&pid=1.7&rm=3&ucfimg=1" alt="Logo">
+                        </div>
+                    </div>
+                    <div class="p-4 company-info">
+                        <h5 class="fw-bold mb-1">Momo (Fintech)</h5>
+                        <p class="text-muted small mb-2"><i class="fas fa-folder"></i> Tài chính / Công nghệ</p>
+                        <p class="small text-secondary">
+                            Ví điện tử số 1 Việt Nam, môi trường trẻ trung năng động.
+                        </p>
+                        <a href="#" class="btn btn-light w-100 text-primary fw-bold mt-2">Đang tuyển 5 vị trí</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Company 6 -->
+            <div class="col-md-4 col-sm-6">
+                <div class="company-item rounded overflow-hidden h-100">
+                    <div class="company-banner" style="background-image: url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=600&q=80');">
+                        <div class="company-logo-thumb shadow-sm">
+                            <img src="https://th.bing.com/th?q=Game+Maker+Studio+1+Logo&w=120&h=120&c=1&rs=1&qlt=70&o=7&cb=1&dpr=1.3&pid=InlineBlock&rm=3&ucfimg=1&mkt=en-WW&cc=VN&setlang=en&adlt=moderate&t=1&mw=247" alt="Logo">
+                        </div>
+                    </div>
+                    <div class="p-4 company-info">
+                        <h5 class="fw-bold mb-1">VNG Corporation</h5>
+                        <p class="text-muted small mb-2"><i class="fas fa-folder"></i> Công nghệ / Game</p>
+                        <p class="small text-secondary">
+                            Kỳ lân công nghệ đầu tiên của Việt Nam.
+                        </p>
+                        <a href="#" class="btn btn-light w-100 text-primary fw-bold mt-2">Đang tuyển 10 vị trí</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Phân trang -->
+        <nav aria-label="Page navigation" class="mt-5">
+            <ul class="pagination justify-content-center">
+                <li class="page-item disabled"><a class="page-link" href="#">Trước</a></li>
+                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-li

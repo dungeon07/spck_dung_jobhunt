@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danh Sách Việc Làm - JobHunt</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../style/style.css">
+</head>
+<body class="bg-light">
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold text-primary" href="index.html"><i class="fas fa-briefcase"></i> JobHunt</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Trang chủ</a></li>
+                    <li class="nav-item"><a class="nav-link active fw-bold text-primary" href="jobs.html">Việc làm</a></li>
+                    <li class="nav-item"><a class="nav-link" href="companies.html">Công ty</a></li>
+                    <li class="nav-item"><a class="btn btn-outline-primary ms-2" href="login.html">Đăng nhập</a></li>
+                    <li class="nav-item"><a class="btn btn-primary ms-2" href="login.html?tab=register">Đăng ký</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header nhỏ -->
+    <div class="bg-primary py-5 mt-5">
+        <div class="container text-white text-center">
+            <h2 class="fw-bold">Tìm kiếm việc làm tốt nhất</h2>
+            <p>Hàng ngàn cơ hội nghề nghiệp đang chờ đón bạn</p>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container py-5">
+        <div class="row">
+            <!-- Sidebar: Bộ lọc -->
+            <div class="col-lg-3 mb-4">
+                <div class="card border-0 shadow-sm">
+                    <div class="card-header bg-white fw-bold">
+                        <i class="fas fa-filter"></i> Lọc tìm kiếm
+                    </div>
+                    <div class="card-body">
+                        <!-- Địa điểm -->
+                        <div class="mb-3">
+                            <label class="form-label fw-bold small">Địa điểm</label>
+                            <select class="form-select" id="filterLocation" onchange="applyFilter()">
+                                <option value="all">Tất cả</option>
+                                <option value="hanoi">Hà Nội</option>
+                                <option value="hcm">Hồ Chí Minh</option>
+                                <option value="danang">Đà Nẵng</option>
+                            </select>
+                        </div>
+                        
+                        <!-- Loại hình -->
+                        <div class="mb-3">
+                            <label class="form-label fw-bold small">Loại hình</label>
+                            <select class="form-select" id="filterType" onchange="applyFilter()">
+                                <option value="all">Tất cả</option>
+                                <option value="remote">Online / Remote</option>
+                                <option value="office">Tại văn phòng</option>
+                                <option value="intern">Thực tập sinh</option>
+                            </select>
+                        </div>
+
+                        <!-- Mức lương (Giả lập) -->
+                        <div class="mb-3">
+                            <label class="form-label fw-bold small">Mức lương</label>
+                            <select class="form-select" id="filterSalary" onchange="applyFilter()">
+                                <option value="all">Tất cả</option>
+                                <option value="high">Trên 20 Triệu</option>
+                                <option value="mid">10 - 20 Triệu</option>
+                            </select>
+                        </div>
+
+                        <button class="btn btn-outline-danger w-100 mt-3" onclick="resetFilter()">Xóa bộ lọc</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Job List: Danh sách việc làm -->
+            <div class="col-lg-9">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h5 class="fw-bold">
+                        <!-- Icon ngôi sao cho đúng chất "nổi bật" -->
+                        <i class="fas fa-star text-warning me-2"></i>
+
+                        <!-- Số lượng -->
+                        <span id="jobCount" class="text-primary">0</span> 
+    
+                        <!-- Chữ hiển thị -->
+                         Công việc nổi bậc
+                    </h5>
+
+                </div>
+
+                <!-- Vùng chứa danh sách việc làm (JS sẽ in vào đây) -->
+                <div id="jobListContainer">
+                    <!-- Loading... -->
+                </div>
+
+                <!-- Phân trang tĩnh (Trang trí) -->
+                <nav aria-label="Page navigation" class="mt-4">
+                    <ul class="pagination justify-content-center">
+                        <li class="page-item disabled"><a class="page-link" href="#">Trước</a></li>
+                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">Sau</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white pt-5 pb-3">
+        <div class="container text-center">
+            <p>&copy; 2023 JobHunt. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // 1. DATABASE: Thêm trường logoUrl để hiển thị ảnh
+        const jobsDB = [
+            { 
+                title: "Frontend Developer", 
+                company: "FPT Software", 
+                salary: "15-25 Triệu", 
+                loc: "hanoi", 
+                type: "office", 
+                tag: "CNTT",
+                logoUrl: "https://th.bing.com/th/id/OIP.EegtI7ZjzZfu5y5UODyDgQHaHa?w=149&h=180&c=7&r=0&o=7&cb=ucfimg2&dpr=1.3&pid=1.7&rm=3&ucfimg=1" // Ảnh giả lập
+            },
+            { 
+                title: "Content Marketing Online", 
+                company: "Media Z", 
+                salary: "8-12 Triệu", 
+                loc: "hcm", 
+                type: "remote", 
+                tag: "Marketing",
+                logoUrl: "https://th.bing.com/th/id/OIP.h3O4Bm6nfRkUC3OvUBodHwHaHa?w=167&h=180&c=7&r=0&o=7&cb=ucfimg2&dpr=1.3&pid=1.7&rm=3&ucfimg=1Z"
+            },
+            { 
+                title: "Sale Bất Động Sản", 
+                company: "VinHomes", 
+                salary: "Thỏa thuận", 
+                loc: "hanoi", 
+                type: "office", 
+                tag: "Sale",
+                logoUrl: "https://th.bing.com/th/id/OIP.dZOvyH0eH8LePGAyhT_GeAHaEr?w=228&h=180&c=7&r=0&o=7&cb=ucfimg2&dpr=1.3&pid=1.7&rm=3&ucfimg=1"
+            },
+            { 
+                title: "ReactJS Developer (Remote)", 
+                company: "Tech Global", 
+                salary: "1000$ - 2000$", 
+                loc: "hcm", 
+                type: "remote", 
+                tag: "CNTT",
+                logoUrl: "https://th.bing.com/th/id/OIP.en0Dv-Ae_-ST616rvQuevAHaHa?w=164&h=180&c=7&r=0&o=7&cb=ucfimg2&dpr=1.3&pid=1.7&rm=3&ucfimg=1"
+            },
+            { 
+                title: "Nhân viên CSKH", 
+                company: "Viettel", 
+                salary: "7-10 Triệu", 
+                loc: "danang", 
+                type: "office", 
+                tag: "CSKH",
+                logoUrl: "data:image/webp;base64,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"
+            },
+            { 
+                title: "Thực tập sinh Java", 
+                company: "CMC Global", 
+                salary: "3-5 Triệu", 
+                loc: "hanoi", 
+                type: "intern", 
+                tag: "CNTT",
+                logoUrl: "https://th.bing.com/th/id/OIP.4LuHEMWwZORKe8l-jqOGoAHaHa?w=156&h=180&c=7&r=0&o=7&cb=ucfimg2&dpr=1.3&pid=1.7&rm=3&ucfimg=1"
+            }
+        ];
+
+        // 2. HÀM RENDER (IN RA MÀN HÌNH)
+        function renderJobs(data) {
+            const container = document.getElementById('jobListContainer');
+            const countLabel = document.getElementById('jobCount');
+            
+            container.innerHTML = ""; // Xóa nội dung cũ
+            countLabel.innerText = data.length; // Cập nhật số lượng
+
+            if (data.length === 0) {
+                container.innerHTML = `<div class="alert alert-warning text-center">Không tìm thấy công việc phù hợp với bộ lọc này.</div>`;
+                return;
+            }
+
+            data.forEach(job => {
+                // Xử lý hiển thị địa điểm đẹp hơn
+                let locText = "";
+                if(job.loc === 'hanoi') locText = "Hà Nội";
+                else if(job.loc === 'hcm') locText = "TP.HCM";
+                else locText = "Đà Nẵng";
+
+                // Code HTML cho từng thẻ việc làm
+                // Lưu ý class "logo-box" ở thẻ div bao quanh ảnh
+                const html = `
+                    <div class="card border-0 shadow-sm mb-3 job-card p-3">
+                        <div class="row align-items-center">
+                            <div class="col-md-2 d-flex justify-content-center mb-3 mb-md-0">
+                                <div class="logo-box">
+                                    <img src="${job.logoUrl}" alt="${job.company}">
+                                </div>
+                            </div>
+                            <div class="col-md-7">
+                                <h5 class="card-title fw-bold text-primary mb-1">
+                                    <a href="#" class="text-decoration-none">${job.title}</a>
+                                </h5>
+                                <p class="mb-2 fw-bold text-dark small">${job.company}</p>
+                                <div class="text-muted small">
+                                    <span class="me-3"><i class="fas fa-dollar-sign text-success"></i> ${job.salary}</span>
+                                    <span class="me-3"><i class="fas fa-map-marker-alt text-danger"></i> ${locText}</span>
+                                    <span class="badge bg-light text-dark border">${job.type === 'remote' ? 'Online' : (job.type === 'intern' ? 'Thực tập' : 'Văn phòng')}</span>
+                                </div>
+                            </div>
+                            <div class="col-md-3 text-end">
+                                <button class="btn btn-outline-primary w-100 fw-bold">Ứng tuyển</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                container.innerHTML += html;
+            });
+        }
+
+        // 3. HÀM KHỞI TẠO (CHẠY KHI VỪA VÀO TRANG)
+        function init() {
+            // Lấy tham số từ thanh địa chỉ (URL) do trang index gửi sang
+            const urlParams = new URLSearchParams(window.location.search);
+            const typeParam = urlParams.get('type');
+            const locParam = urlParams.get('location');
+            const salaryParam = urlParams.get('salary');
+
+            // Cập nhật giao diện Dropdown bên trái cho đúng
+            if(locParam) document.getElementById('filterLocation').value = locParam;
+            if(typeParam) document.getElementById('filterType').value = typeParam;
+            if(salaryParam) document.getElementById('filterSalary').value = salaryParam;
+
+            applyFilter(); // Gọi hàm lọc ngay lập tức
+        }
+
+        // 4. HÀM LỌC DỮ LIỆU
+        function applyFilter() {
+            const locValue = document.getElementById('filterLocation').value;
+            const typeValue = document.getElementById('filterType').value;
+            const salaryValue = document.getElementById('filterSalary').value;
+
+            let result = jobsDB;
+
+            // Lọc theo địa điểm
+            if (locValue !== 'all') {
+                result = result.filter(job => job.loc === locValue);
+            }
+            
+            // Lọc theo loại hình
+            if (typeValue !== 'all') {
+                result = result.filter(job => job.type === typeValue);
+            }
+
+            // Lọc theo lương (giả định đơn giản)
+            if (salaryValue === 'high') {
+                result = result.filter(job => job.salary.includes('25') || job.salary.includes('30') || job.salary.includes('$'));
+            }
+
+            renderJobs(result);
+        }
+
+        function resetFilter() {
+            document.getElementById('filterLocation').value = 'all';
+            document.getElementById('filterType').value = 'all';
+            document.getElementById('filterSalary').value = 'all';
+            
+            // Xóa tham số trên URL
+            window.history.pushState({}, document.title, window.location.pathname);
+            
+            renderJobs(jobsDB);
+        }
+
+        // Bắt đầu chạy
+        init();
+    </script>
+</body>
+</html>
