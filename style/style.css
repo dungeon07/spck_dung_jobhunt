@@ -1,71 +1,49 @@
 /* style/style.css */
 :root {
-    --primary-color: #007bff;
-    --secondary-color: #6c757d;
-    --success-color: #28a745;
-    --dark-color: #212529;
+    --primary: #0d6efd;
+    --dark: #212529;
 }
 
 body {
-    font-family: 'Inter', sans-serif;
-    background-color: #f4f7f6;
     padding-top: 80px;
+    background-color: #f4f7fa;
 }
 
-/* Navbar */
-.navbar {
-    transition: all 0.3s ease;
-}
-
-/* Auth Card */
 .auth-card {
     border: none;
-    border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+}
+
+.profile-img-container {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
     overflow: hidden;
+    border: 4px solid white;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
-.nav-pills .nav-link {
-    color: var(--secondary-color);
-    font-weight: 600;
-    border-radius: 10px;
-    padding: 10px 25px;
+.profile-img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
-.nav-pills .nav-link.active {
-    background-color: var(--primary-color);
-    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
-}
-
-.form-control {
-    border-radius: 10px;
-    padding: 12px;
-    border: 1px solid #e1e1e1;
-}
-
-.form-control:focus {
-    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
-    border-color: var(--primary-color);
-}
-
-.btn-primary, .btn-success {
-    border-radius: 10px;
-    padding: 12px;
-    font-weight: 600;
+.upload-cv-zone {
     transition: all 0.3s;
 }
 
-.btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0, 123, 255, 0.3);
+.upload-cv-zone:hover {
+    background-color: #eef2f7 !important;
+    border-color: var(--primary) !important;
 }
 
-/* Hero Section */
-.hero-section {
-    background: linear-gradient(135deg, rgba(0,123,255,0.9), rgba(0,86,179,0.9)), 
-                url('https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=1500&q=80');
-    background-size: cover;
-    background-position: center;
-    color: white;
-    padding: 100px 0;
+.border-dashed {
+    border-style: dashed !important;
+}
+
+.btn {
+    border-radius: 8px;
+    font-weight: 500;
 }

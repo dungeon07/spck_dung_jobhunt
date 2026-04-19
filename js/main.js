@@ -1,81 +1,122 @@
-// js/main.js
-
-// 1. Hàm Đăng ký
-function handleRegister() {
-    const name = document.getElementById('rName').value;
-    const email = document.getElementById('rEmail').value;
-    const pass = document.getElementById('rPass').value;
-    const role = document.getElementById('rRole').value;
-
-    if (!name || !email || !pass) {
-        alert("Vui lòng điền đầy đủ thông tin!");
-        return;
-    }
-
-    // Lấy danh sách user cũ từ localStorage
-    let users = JSON.parse(localStorage.getItem('users')) || [];
-
-    // Kiểm tra email đã tồn tại chưa
-    const isExisted = users.some(user => user.email === email);
-    if (isExisted) {
-        alert("Email này đã được đăng ký!");
-        return;
-    }
-
-    // Thêm user mới
-    const newUser = { name, email, pass, role };
-    users.push(newUser);
-
-    // Lưu lại vào localStorage
-    localStorage.setItem('users', JSON.stringify(users));
-    alert("Đăng ký thành công! Mời bạn đăng nhập.");
-    
-    // Chuyển sang tab đăng nhập bằng Bootstrap API
-    const loginTab = new bootstrap.Tab(document.querySelector('#authTab button[data-bs-target="#loginForm"]'));
-    loginTab.show();
-}
-
-// 2. Hàm Đăng nhập
-function handleLogin() {
-    const email = document.getElementById('lEmail').value;
-    const pass = document.getElementById('lPass').value;
-
-    let users = JSON.parse(localStorage.getItem('users')) || [];
-
-    // Tìm user khớp email và password
-    const user = users.find(u => u.email === email && u.pass === pass);
-
-    if (user) {
-        // Lưu thông tin user đang đăng nhập vào session (localStorage)
-        localStorage.setItem('currentUser', JSON.stringify(user));
-        alert("Đăng nhập thành công!");
-
-        // Điều hướng dựa trên vai trò
-        if (user.role === 'employer') {
-            window.location.href = 'dashboard.html';
-        } else {
-            window.location.href = 'index.html';
-        }
-    } else {
-        alert("Email hoặc mật khẩu không chính xác!");
-    }
-}
-
-// 3. Hàm Đăng xuất
-function logout() {
-    localStorage.removeItem('currentUser');
-    window.location.href = 'login.html';
-}
-
-// 4. Kiểm tra trạng thái đăng nhập khi tải trang (hiển thị tên user lên navbar)
-window.onload = function() {
+// Chờ trang tải xong
+document.addEventListener('DOMContentLoaded', function() {
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    const authLinks = document.getElementById('authLinks'); // Cần thêm id này vào navbar trong index.html
 
-    if (currentUser && authLinks) {
-        authLinks.innerHTML = `
-            <li class="nav-item"><span class="nav-link text-dark">Chào, <b>${currentUser.name}</b></span></li>
-            <li class="nav-item"><a class="btn btn-outline-danger ms-2" onclick="logout()">Đăng xuất</a></li>
-        `;
+    // 1. Kiểm tra đăng nhập
+    if (!currentUser) {
+        if (window.location.pathname.includes('profile.html')) {
+            alert("Bạn cần đăng nhập để vào trang này!");
+            window.location.href = 'login.html';
+        }
+        return;
+    }
+
+    // 2. Hàm hiển thị dữ liệu lên trang Profile
+    function renderProfile() {
+        const sideName = document.getElementById('sideName');
+        if(!sideName) return; // Nếu không ở trang profile thì dừng
+
+        document.getElementById('sideName').innerText = currentUser.name;
+        document.getElementById('sideEmail').innerText = currentUser.email;
+        document.getElementById('sidePhone').innerText = currentUser.phone || "Chưa cập nhật";
+        document.getElementById('sideTitle').innerText = currentUser.title || "Chưa cập nhật tiêu đề";
+        
+        document.getElementById('editName').value = currentUser.name;
+        document.getElementById('editPhone').value = currentUser.phone || "";
+        document.getElementById('editTitle').value = currentUser.title || "";
+
+        // Hiển thị nút xem CV nếu đã có dữ liệu
+        if(currentUser.cvData) {
+            document.getElementById('cvStatus').classList.remove('d-none');
+            document.getElementById('cvFileName').innerText = currentUser.cvName;
+        }
+    }
+    renderProfile();
+
+    // 3. Xử lý Lưu thông tin cá nhân
+    const profileForm = document.getElementById('profileForm');
+    if(profileForm) {
+        profileForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            currentUser.name = document.getElementById('editName').value;
+            currentUser.phone = document.getElementById('editPhone').value;
+            currentUser.title = document.getElementById('editTitle').value;
+
+            saveData(currentUser);
+            alert("Đã cập nhật thông tin thành công!");
+            renderProfile();
+        });
+    }
+
+    // 4. Xử lý Upload CV (Chuyển sang Base64)
+    const cvInput = document.getElementById('cvInput');
+    if(cvInput) {
+        cvInput.addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+
+            if (file.type !== "application/pdf") {
+                alert("Vui lòng chỉ chọn file PDF!");
+                return;
+            }
+
+            if (file.size > 2 * 1024 * 1024) {
+                alert("File quá nặng! Vui lòng chọn file dưới 2MB.");
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                currentUser.cvName = file.name;
+                currentUser.cvData = event.target.result; // Đây là chuỗi Base64 của file
+
+                saveData(currentUser);
+                alert("Tải lên CV thành công!");
+                location.reload();
+            };
+            reader.readAsDataURL(file);
+        });
+    }
+});
+
+// Hàm hỗ trợ lưu dữ liệu vào LocalStorage (Cập nhật cả currentUser và danh sách users)
+function saveData(userObj) {
+    localStorage.setItem('currentUser', JSON.stringify(userObj));
+    
+    let users = JSON.parse(localStorage.getItem('users')) || [];
+    const index = users.findIndex(u => u.email === userObj.email);
+    if(index !== -1) {
+        users[index] = userObj;
+        localStorage.setItem('users', JSON.stringify(users));
+    }
+}
+
+// HÀM XEM CV (Dùng cho nút Xem)
+function viewCV() {
+    const user = JSON.parse(localStorage.getItem('currentUser'));
+    if (!user || !user.cvData) {
+        alert("Không tìm thấy dữ liệu CV!");
+        return;
+    }
+
+    const newTab = window.open();
+    newTab.document.write(`
+        <html>
+            <head><title>Xem CV: ${user.cvName}</title></head>
+            <body style="margin:0;display:flex;justify-content:center;background:#525659;">
+                <embed src="${user.cvData}" type="application/pdf" width="100%" height="100%">
+            </body>
+        </html>
+    `);
+}
+
+// Hàm xóa CV
+function removeCV() {
+    if(confirm("Bạn có chắc muốn xóa CV không?")) {
+        const user = JSON.parse(localStorage.getItem('currentUser'));
+        delete user.cvName;
+        delete user.cvData;
+        saveData(user);
+        location.reload();
     }
 }
