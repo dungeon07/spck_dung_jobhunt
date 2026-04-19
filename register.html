@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Đăng ký tài khoản</title>
+    <link rel="stylesheet" href="style/style.css">
+</head>
+<body>
+    <div class="auth-container">
+        <form id="registerForm">
+            <h2>Đăng ký</h2>
+            <input type="text" id="regUser" placeholder="Họ và tên" required>
+            <input type="email" id="regEmail" placeholder="Email" required>
+            <input type="password" id="regPass" placeholder="Mật khẩu" required>
+            
+            <label>Bạn là:</label>
+            <select id="regRole">
+                <option value="candidate">Người ứng tuyển (Candidate)</option>
+                <option value="employer">Nhà tuyển dụng (Employer)</option>
+            </select>
+            
+            <button type="submit">Đăng ký</button>
+            <p>Đã có tài khoản? <a href="login.html">Đăng nhập</a></p>
+        </form>
+    </div>
+    <script src="js/main.js"></script>
+</body>
+</html>

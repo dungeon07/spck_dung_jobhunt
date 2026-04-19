@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Quản lý bài đăng</title>
+    <link rel="stylesheet" href="style/style.css">
+</head>
+<body>
+    <div class="container">
+        <h2 id="formTitle">Đăng bài tuyển dụng mới</h2>
+        <form id="jobForm">
+            <input type="hidden" id="jobId">
+            <input type="text" id="jobTitle" placeholder="Tiêu đề công việc" required>
+            <input type="text" id="jobCompany" placeholder="Tên công ty" required>
+            <textarea id="jobDesc" placeholder="Mô tả chi tiết"></textarea>
+            <button type="submit">Lưu bài đăng</button>
+        </nav>
+    </div>
+    <script src="js/main.js"></script>
+    <script>
+        checkRole('employer');
+        // Nếu có ID trên URL thì là chế độ Edit
+        const urlParams = new URLSearchParams(window.location.search);
+        if(urlParams.get('id')) loadJobData(urlParams.get('id'));
+    </script>
+</body>
+</html>

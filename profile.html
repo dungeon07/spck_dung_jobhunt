@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Hồ sơ của tôi</title>
+    <link rel="stylesheet" href="style/style.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Chỉnh sửa Profile & CV</h2>
+        <form id="profileForm">
+            <label>Họ tên:</label>
+            <input type="text" id="profName">
+            <label>Email:</label>
+            <input type="email" id="profEmail">
+            <label>Tải lên CV (PDF):</label>
+            <input type="file" id="cvUpload" accept=".pdf">
+            <div id="cvStatus"></div>
+            <button type="submit">Cập nhật hồ sơ</button>
+        </form>
+        <a href="jobs.html">Quay lại xem việc làm</a>
+    </div>
+    <script src="js/main.js"></script>
+    <script>checkRole('candidate'); loadProfile();</script>
+</body>
+</html>

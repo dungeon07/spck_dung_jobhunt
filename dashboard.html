@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Nhà tuyển dụng - Dashboard</title>
+    <link rel="stylesheet" href="style/style.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <nav>
+            <h1>Employer Panel</h1>
+            <a href="post-job.html">Đăng bài mới</a>
+            <button onclick="logout()">Đăng xuất</button>
+        </nav>
+
+        <div class="stats-cards">
+            <div class="card">
+                <h3>Tổng bài đăng</h3>
+                <p id="totalJobs">0</p>
+            </div>
+            <div class="card">
+                <h3>Lượt xem bài</h3>
+                <p>1,240</p>
+            </div>
+        </div>
+
+        <h2>Danh sách bài đăng của bạn</h2>
+        <div id="myJobsList" class="job-list-admin"></div>
+    </div>
+    <script src="js/main.js"></script>
+    <script>checkRole('employer'); displayStats();</script>
+</body>
+</html>
