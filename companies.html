@@ -10,24 +10,28 @@
 </head>
 <body class="bg-light">
 
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
-        <div class="container">
-            <a class="navbar-brand fw-bold text-primary" href="index.html"><i class="fas fa-briefcase"></i> JobHunt</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="index.html">Trang chủ</a></li>
-                    <li class="nav-item"><a class="nav-link" href="jobs.html">Việc làm</a></li>
-                    <!-- Đánh dấu trang hiện tại là active -->
-                    <li class="nav-item"><a class="nav-link active fw-bold text-primary" href="companies.html">Công ty</a></li>
-                    <li class="nav-item"><a class="btn btn-outline-primary ms-2" href="login.html">Đăng nhập</a></li>
-                </ul>
+<!-- NAVBAR ĐỒNG NHẤT -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
+    <div class="container">
+        <a class="navbar-brand fw-bold text-primary" href="index.html">
+            <i class="fas fa-briefcase me-1"></i> JobHunt
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mx-auto">
+                <li class="nav-item"><a class="nav-link px-3" href="index.html" id="nav-home">Trang chủ</a></li>
+                <li class="nav-item"><a class="nav-link px-3" href="jobs.html" id="nav-jobs">Việc làm</a></li>
+                <li class="nav-item"><a class="nav-link px-3" href="companies.html" id="nav-companies">Công ty</a></li>
+            </ul>
+            <!-- Khu vực Auth (Do JS main.js xử lý) -->
+            <div id="authSection" class="ms-auto d-flex align-items-center">
+                <!-- Nút Đăng nhập/Đăng ký sẽ tự hiện ở đây -->
             </div>
         </div>
-    </nav>
+    </div>
+</nav>
 
     <!-- Header tìm kiếm công ty -->
     <div class="bg-white py-5 mt-5 shadow-sm">
