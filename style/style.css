@@ -6,28 +6,26 @@
 body {
     font-family: 'Inter', sans-serif;
     background-color: #f8f9fa;
-    padding-top: 72px; /* Khoảng cách chuẩn để Navbar không che nội dung */
+    padding-top: 72px;
     color: #333;
 }
 
 /* =========================================
-   2. HERO SECTION (PHẦN ĐẦU TRANG)
+   2. HERO SECTION
    ========================================= */
 .hero-section {
     position: relative;
     padding: 120px 0;
     min-height: 80vh;
-    /* Ảnh nền quảng bá chuyên nghiệp */
     background: url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') no-repeat center center;
     background-size: cover;
-    background-attachment: fixed; /* Hiệu ứng cuộn Parallax */
+    background-attachment: fixed;
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
 }
 
-/* Lớp phủ tối (Overlay) - Giúp chữ TRẮNG luôn nổi bật trên nền ảnh */
 .hero-overlay {
     position: absolute;
     top: 0;
@@ -40,69 +38,11 @@ body {
 
 .hero-content {
     position: relative;
-    z-index: 2; /* Đưa nội dung lên trên lớp phủ */
-}
-
-/* Tùy chỉnh dòng tiêu đề */
-.hero-section h1 {
-    text-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
-    letter-spacing: -1px;
+    z-index: 2;
 }
 
 /* =========================================
-   3. THANH TÌM KIẾM (SEARCH BOX)
-   ========================================= */
-.search-box-container {
-    max-width: 900px;
-    margin: 40px auto 0;
-}
-
-/* Bo tròn thanh search và xử lý tràn viền */
-.search-box-container form {
-    border-radius: 50px !important;
-    overflow: hidden;
-}
-
-.search-box-container .form-control, 
-.search-box-container .form-select {
-    border: none !important;
-    box-shadow: none !important;
-    padding-left: 15px;
-}
-
-/* Đường kẻ ngăn cách giữa các ô input trên máy tính */
-@media (min-width: 768px) {
-    .border-start {
-        border-left: 1px solid #dee2e6 !important;
-    }
-}
-
-/* =========================================
-   4. NGÀNH NGHỀ PHỔ BIẾN (CATEGORY CARDS)
-   ========================================= */
-.category-card {
-    border: 1px solid #edf2f7;
-    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-    cursor: pointer;
-    background: #fff;
-}
-
-.category-card:hover {
-    transform: translateY(-8px);
-    border-color: #0d6efd;
-    box-shadow: 0 15px 30px rgba(13, 110, 253, 0.1) !important;
-}
-
-.category-card i {
-    transition: transform 0.3s ease;
-}
-
-.category-card:hover i {
-    transform: scale(1.2);
-}
-
-/* =========================================
-   5. DANH SÁCH VIỆC LÀM (JOB CARDS)
+   5. DANH SÁCH VIỆC LÀM & LOGO (SỬA LỖI TẠI ĐÂY)
    ========================================= */
 .job-card {
     border: 1px solid #f1f1f1;
@@ -110,43 +50,35 @@ body {
 }
 
 .job-card:hover {
-    transform: scale(1.02);
+    transform: scale(1.01);
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08) !important;
 }
 
-/* Badge (Nhãn) trạng thái việc làm */
-.bg-soft-primary {
-    background-color: #e7f1ff;
-    color: #0d6efd;
-    font-weight: 600;
+/* Khung chứa ảnh logo */
+.logo-box {
+    width: 65px;         /* Cố định chiều rộng */
+    height: 65px;        /* Cố định chiều cao */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;    /* Cắt bỏ phần ảnh tràn ra ngoài */
+    border: 1px solid #eee;
+    padding: 5px;        /* Tạo khoảng cách nhỏ giữa ảnh và khung */
 }
 
-.bg-soft-success {
-    background-color: #e1fcef;
-    color: #198754;
-    font-weight: 600;
+/* Ảnh bên trong logo-box */
+.logo-box img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain; /* QUAN TRỌNG: Giữ tỉ lệ ảnh và nằm gọn trong khung */
 }
 
-.badge {
-    padding: 6px 12px;
-    border-radius: 6px;
-    font-size: 0.8rem;
-}
+.bg-soft-primary { background-color: #e7f1ff; color: #0d6efd; font-weight: 600; }
+.bg-soft-success { background-color: #e1fcef; color: #198754; font-weight: 600; }
 
-/* =========================================
-   6. RESPONSIVE (TƯƠNG THÍCH DI ĐỘNG)
-   ========================================= */
 @media (max-width: 768px) {
-    .hero-section {
-        background-attachment: scroll; /* Tắt parallax trên mobile để mượt hơn */
-        padding: 80px 0;
-    }
-
-    .display-3 {
-        font-size: 2.5rem; /* Giảm cỡ chữ tiêu đề trên điện thoại */
-    }
-
-    .search-box-container form {
-        border-radius: 15px !important; /* Bớt bo tròn hơn trên mobile */
-    }
+    .display-3 { font-size: 2.5rem; }
+    .logo-box { width: 60px; height: 60px; }
 }
